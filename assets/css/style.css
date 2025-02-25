@@ -321,7 +321,9 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active {
+  max-height: 500px; /* Lebih tinggi untuk konten lebih banyak */
+}
 
 .sidebar-info {
   position: relative;
@@ -342,6 +344,7 @@ main {
   font-weight: var(--fw-500);
   letter-spacing: -0.25px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .info-content .title {
@@ -352,6 +355,8 @@ main {
   width: max-content;
   padding: 3px 12px;
   border-radius: 8px;
+  text-align: center;
+  display: block;
 }
 
 .info_more-btn {
@@ -379,12 +384,18 @@ main {
 }
 
 .info_more-btn:hover,
-.info_more-btn:focus { background: var(--bg-gradient-yellow-1); }
+.info_more-btn:focus {
+  background: var(--bg-gradient-yellow-1);
+}
 
 .info_more-btn:hover::before,
-.info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); }
+.info_more-btn:focus::before {
+  background: var(--bg-gradient-yellow-2);
+}
 
-.info_more-btn span { display: none; }
+.info_more-btn span {
+  display: none;
+}
 
 .sidebar-info_more {
   opacity: 0;
@@ -413,6 +424,8 @@ main {
 .contact-info {
   max-width: calc(100% - 46px);
   width: calc(100% - 46px);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-title {
@@ -422,12 +435,17 @@ main {
   margin-bottom: 2px;
 }
 
-.contact-info :is(.contact-link, time, address) {
+.contact-info :is(.contact-link, time, address, a) {
   color: var(--white-2);
   font-size: var(--fs-7);
+  display: block;
+  text-decoration: none;
+  word-break: break-word;
 }
 
-.contact-info address { font-style: normal; }
+.contact-info address {
+  font-style: normal;
+}
 
 .social-list {
   display: flex;
@@ -443,8 +461,10 @@ main {
   font-size: 18px;
 }
 
+.social-item .social-link:hover {
+  color: var(--light-gray);
+}
 
-.social-item .social-link:hover { color: var(--light-gray); }
 
 
 
@@ -934,12 +954,14 @@ main {
 
 .project-list {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  margin-bottom: 10px;
+  grid-template-columns: 1fr; /* Single column layout, can adjust with media queries */
+  gap: 30px;                  /* Gap between images */
+  margin-bottom: 15px;
 }
 
-.project-item { display: none; }
+.project-item {
+  display: none;
+}
 
 .project-item.active {
   display: block;
@@ -947,19 +969,35 @@ main {
 }
 
 @keyframes scaleUp {
-  0% { transform: scale(0.5); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.project-item > a { width: 100%; }
+.project-item > a {
+  width: 100%;
+}
 
 .project-img {
   position: relative;
   width: 100%;
-  height: 200px;
-  border-radius: 16px;
+  padding-top: 75%; /* Maintains a 4:3 aspect ratio (4/3 = 1.33 → 75% padding) */
   overflow: hidden;
-  margin-bottom: 15px;
+  border-radius: 16px;
+}
+
+.project-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;       /* Fills the container */
+  height: 100%;      /* Fills the container */
+  object-fit: cover; /* Ensures the image covers the whole area */
+  border-radius: 16px;
+  transition: var(--transition-1);
 }
 
 .project-img::before {
@@ -974,7 +1012,9 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover .project-img::before { background: hsla(0, 0%, 0%, 0.5); }
+.project-item > a:hover .project-img::before {
+  background: hsla(0, 0%, 0%, 0.5);
+}
 
 .project-item-icon-box {
   --scale: 0.8;
@@ -998,19 +1038,20 @@ main {
   opacity: 1;
 }
 
-.project-item-icon-box ion-icon { --ionicon-stroke-width: 50px; }
-
-.project-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition-1);
+.project-item-icon-box ion-icon {
+  --ionicon-stroke-width: 50px;
 }
 
-.project-item > a:hover img { transform: scale(1.1); }
+.project-item > a:hover img {
+  transform: scale(1.1);
+}
 
 .project-title,
-.project-category { margin-left: 10px; }
+.project-category {
+  margin-left: 10px;
+  margin-top: 10px;  /* Adds gap between image and text */
+  font-family: var(--ff-poppins);  /* Applying Poppins font */
+}
 
 .project-title {
   color: var(--white-2);
@@ -1024,7 +1065,10 @@ main {
   color: var(--light-gray-70);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
+  margin-top: 5px;  /* Additional gap between title and category */
 }
+
+
 
 
 
